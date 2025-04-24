@@ -1,8 +1,8 @@
 [project]
 
-name = "nodriver" # Required
+name = "guimauve-driver" # Required
 
-version = "0.41"  # Required
+version = "0.44"  # Required
 
 description = """
 
