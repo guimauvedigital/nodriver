@@ -69,6 +69,7 @@ class Browser:
         sandbox: bool = True,
         host: str = None,
         port: int = None,
+        tries: int = 5,
         **kwargs,
     ) -> Browser:
         """
@@ -86,7 +87,7 @@ class Browser:
                 **kwargs,
             )
         instance = cls(config)
-        await instance.start()
+        await instance.start(tries=tries)
         return instance
 
     def __init__(self, config: Config, **kwargs):
