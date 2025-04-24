@@ -329,7 +329,7 @@ class Browser:
         )
         return connection
 
-    async def start(self=None) -> Browser:
+    async def start(self=None, tries: int = 5) -> Browser:
         """launches the actual browser"""
         if not self:
             warnings.warn("use ``await Browser.create()`` to create a new instance")
@@ -400,11 +400,11 @@ class Browser:
         self._http = HTTPApi((self.config.host, self.config.port))
         util.get_registered_instances().add(self)
         await asyncio.sleep(0.25)
-        for _ in range(5):
+        for _ in range(tries):
             try:
                 self.info = ContraDict(await self._http.get("version"), silent=True)
             except (Exception,):
-                if _ == 4:
+                if _ == tries-1:
                     logger.debug("could not start", exc_info=True)
                 await self.sleep(0.5)
             else:
