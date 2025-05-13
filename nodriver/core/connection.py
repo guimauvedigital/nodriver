@@ -438,7 +438,8 @@ class Connection(metaclass=CantTouchThis):
                 e.message += f"\ncommand:{tx.method}\nparams:{tx.params}"
                 raise e
         except Exception:
-            await self.aclose()
+            pass # Do not close the connection on error
+            #await self.aclose()
 
     #
     async def _register_handlers(self):

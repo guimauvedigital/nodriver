@@ -2,7 +2,7 @@
 
 name = "guimauve-driver" # Required
 
-version = "0.44"  # Required
+version = "0.44.1"  # Required
 
 description = """
 
